@@ -4,7 +4,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
 project(dspc C CXX)
 
-set(DSPC_VERSION 1.1.0)
+set(DSPC_VERSION 1.1.1)
 
 set(INSTALL_BIN_DIR "${CMAKE_INSTALL_PREFIX}/bin" CACHE PATH "Installation directory for executables")
 set(INSTALL_LIB_DIR "${CMAKE_INSTALL_PREFIX}/lib" CACHE PATH "Installation directory for libraries")
@@ -22,13 +22,11 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     ADD_DEFINITIONS("-D__DARWIN__")
     set(CMAKE_C_COMPILER "clang")
     set(CMAKE_CXX_COMPILER "clang++")
-    set(DSPC_SOURCE_DIR /Users/philippe/mysrc/audiodsp/c)
 endif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     set(CMAKE_C_COMPILER "gcc")
     set(CMAKE_CXX_COMPILER "g++")
-    set(DSPC_SOURCE_DIR /home/catseye/mysrc/audiodsp/c)
 endif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
 
 set(CC ${CMAKE_C_COMPILER})
@@ -54,14 +52,12 @@ include(FindPkgConfig)
 pkg_check_modules(FFTW REQUIRED fftw3f)
 pkg_check_modules(SNDFILE REQUIRED sndfile)
 
-include_directories(${FFTW_INCLUDE_DIRS} ${SNDFILE_INCLUDE_DIRS} ${DSPC_SOURCE_DIR} "/usr/local/include")
+include_directories(${FFTW_INCLUDE_DIRS} ${SNDFILE_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR} "/usr/local/include")
 
 set(DSPC_PUBLIC_HEADERS
     # were in genc
-    cpuinfo.h
     crc32_hswarren.h
     dumb_alloc2d.h
-    monotime.h
     perr.h
     strip_path.h
     cycle-fftw.h
@@ -75,7 +71,6 @@ set(DSPC_PUBLIC_HEADERS
     fft.hh
     ft_utils.h
     rng.h
-    rb.hh
     sfio.hh
     windows.hh
     butterworth_lr.h
@@ -87,6 +82,7 @@ set(DSPC_PUBLIC_HEADERS
     path_filtering_c.h
     path_iir_cpp.hh
     path_vec16_cintr.h
+    jclient.h
     # solvers
     de.h
     remez.h
@@ -99,10 +95,8 @@ set(DSPC_PRIVATE_HEADERS
 
 set(DSPC_SRCS
     # were in genc
-    cpuinfo.c
     crc32_hswarren.c
     dumb_alloc2d.c
-    monotime.c
     perr.c
     strip_path.c
     exception.cpp
@@ -110,12 +104,12 @@ set(DSPC_SRCS
     # dspc
     ft_utils.c
     rng.c
-    rb.cpp
     sfio.cpp
     windows.cpp
     windows_flac.c
     iir_utils.c
     path_biquad_cpp.cpp
+    jclient.c
     # solvers
     de_strategy.c
     de_solve.c
