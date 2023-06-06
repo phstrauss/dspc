@@ -21,7 +21,7 @@
  *************************************************************************/
 
 
-#include "remez.h"
+#include <dspc/remez.h>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>

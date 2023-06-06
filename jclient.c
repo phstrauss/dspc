@@ -10,7 +10,7 @@
 
 #include <dspc/dumb_alloc2d.h>
 #include <dspc/perr.h>
-#include "jclient.h"
+#include <dspc/jclient.h>
 
 
 // WW : think errhandling as a lib
