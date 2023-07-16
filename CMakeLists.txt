@@ -4,7 +4,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
 project(dspc C CXX)
 
-set(DSPC_VERSION 1.1.1)
+set(DSPC_VERSION 1.1.2)
 
 set(INSTALL_BIN_DIR "${CMAKE_INSTALL_PREFIX}/bin" CACHE PATH "Installation directory for executables")
 set(INSTALL_LIB_DIR "${CMAKE_INSTALL_PREFIX}/lib" CACHE PATH "Installation directory for libraries")
@@ -56,41 +56,41 @@ include_directories(${FFTW_INCLUDE_DIRS} ${SNDFILE_INCLUDE_DIRS} ${CMAKE_SOURCE_
 
 set(DSPC_PUBLIC_HEADERS
     # were in genc
-    crc32_hswarren.h
-    dumb_alloc2d.h
-    perr.h
-    strip_path.h
-    cycle-fftw.h
-    gnuinline.h
-    dspc.h
-    exception.hh
-    mem.hh
-    templating.hh
+    dspc/crc32_hswarren.h
+    dspc/dumb_alloc2d.h
+    dspc/perr.h
+    dspc/strip_path.h
+    dspc/cycle-fftw.h
+    dspc/gnuinline.h
+    dspc/dspc.h
+    dspc/exception.hh
+    dspc/mem.hh
+    dspc/templating.hh
     # dspc
-    dspc_misc.h
-    fft.hh
-    ft_utils.h
-    rng.h
-    sfio.hh
-    windows.hh
-    butterworth_lr.h
-    funcname.h
-    genfiltering_c_preproc.h
-    iir_c_preproc.h
-    iir_utils.h
-    path_biquad_cpp.hh
-    path_filtering_c.h
-    path_iir_cpp.hh
-    path_vec16_cintr.h
-    jclient.h
+    dspc/dspc_misc.h
+    dspc/fft.hh
+    dspc/ft_utils.h
+    dspc/rng.h
+    dspc/sfio.hh
+    dspc/windows.hh
+    dspc/butterworth_lr.h
+    dspc/funcname.h
+    dspc/genfiltering_c_preproc.h
+    dspc/iir_c_preproc.h
+    dspc/iir_utils.h
+    dspc/path_biquad_cpp.hh
+    dspc/path_filtering_c.h
+    dspc/path_iir_cpp.hh
+    dspc/path_vec16_cintr.h
+    dspc/jclient.h
     # solvers
-    de.h
-    remez.h
+    dspc/de.h
+    dspc/remez.h
 )
 
 set(DSPC_PRIVATE_HEADERS
-    de_rng_helpers.h
-    de_strategy_helpers.h
+    dspc/de_rng_helpers.h
+    dspc/de_strategy_helpers.h
 )
 
 set(DSPC_SRCS
